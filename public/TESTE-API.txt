@@ -1,0 +1,587 @@
+
+//teste ok
+GET http://localhost:8000/api/teste
+Content-Type: application/json
+//resposta (teste funcionamento API)
+
+//buscar usuarios necessita autorização
+GET http://localhost:8000/api/usuarios
+Content-Type: application/json
+//resposta erro
+
+//cadastro usuario ok
+POST http://localhost:8000/api/usuarios
+Content-Type: application/json
+
+{
+    "nome":"Admin",
+    "email": "admin@gmail.com",
+    "senha": "admin123"
+}
+// resposta usuario cadastrado
+
+//cadastro usuario ok
+POST http://localhost:8000/api/usuarios
+Content-Type: application/json
+
+{
+    "nome":" teste 5",
+    "email": "erreioultimo5@gmail.com",
+    "senha": "teste12345"
+}
+
+//atualização usuario falta autorização
+PUT http://localhost:8000/api/usuarios/1
+Content-Type: application/json
+
+{
+    "nome":"Bryan A de Freitas",
+    "email": "bryanalex464@gmail.com",
+    "senha": "bryan123"
+}
+// resposta erro
+
+//cadastro empresa ok
+POST http://localhost:8000/api/empresa
+Content-Type: application/json
+
+{
+    "nome":"empresa 2",
+    "email": "empresa2@gmail.com",
+    "senha": "admin123"
+}
+//resposta json
+//{
+//  "nome": "Padr\u00e3o Sistemas",
+//  "email": "padraosistemas@gmail.com",
+//  "updated_at": "2024-06-18T07:32:51.000000Z",
+//  "created_at": "2024-06-18T07:32:51.000000Z",
+//  "id": 1
+//}
+
+
+//login usuario ok
+POST http://localhost:8000/api/usuarios/login
+Content-Type: application/json
+
+{
+    "email": "bryanalex@gmail.com",
+    "senha": "bryan123"
+}
+//resposta json
+//{
+//  "usuario": {
+//    "id": 1,
+//    "nome": "Bryan Alex de Freitas",
+//    "email": "bryanalex@gmail.com",
+//    "created_at": "2024-06-18T07:22:55.000000Z",
+//    "updated_at": "2024-06-18T07:22:55.000000Z"
+//  },
+//  "token": "1|iY2N42WQa8JPInOSYeFaQLPK4Kcs1QEqn7S8ezA983806867"
+//}
+
+//atualização usuario ok
+PUT http://localhost:8000/api/usuarios/1
+Content-Type: application/json
+Authorization: Bearer 1|iY2N42WQa8JPInOSYeFaQLPK4Kcs1QEqn7S8ezA983806867
+
+{
+    "nome":"Bryan A de Freitas",
+    "email": "bryanalex464@gmail.com",
+    "senha": "bryan123"
+}
+//resposta
+//{
+//  "id": 1,
+//  "nome": "Bryan A de Freitas",
+//  "email": "bryanalex464@gmail.com",
+//  "created_at": "2024-06-18T07:22:55.000000Z",
+//  "updated_at": "2024-06-18T07:38:49.000000Z"
+//}
+
+//logout usuario ok
+POST http://localhost:8000/api/usuarios/logout
+Content-Type: application/json
+Authorization: Bearer 1|GhjkaxFlGBPJSpwNSn2Siz4WNXLiYnRhas5rTTAma650ec6b
+//resposta
+//{
+//  "mensagem": "Logout realizado com sucesso"
+//}
+
+//login teste excluir ok
+POST http://localhost:8000/api/usuarios/login
+Content-Type: application/json
+
+{
+    "email": "teste@gmail.com",
+    "senha": "teste123"
+}
+
+
+//excluir usuario ok
+DELETE http://localhost:8000/api/usuarios/2
+Content-Type: application/json
+Authorization: Bearer 5|ZDTwjQXRSm3EDZDPRjc4iZCM1zLriHNenBeQc25Vb2ead10d
+// resposta
+// HTTP/1.1 204 No Content (excluido com sucesso por isso sem conteudo)
+
+//cadastro empresateste ok
+POST http://localhost:8000/api/empresa
+Content-Type: application/json
+
+{
+    "nome":"teste Sistemas",
+    "email": "testeempresa@gmail.com",
+    "senha": "empresa123"
+}
+
+//login teste ok
+POST http://localhost:8000/api/empresa/login
+Content-Type: application/json
+
+{
+    "email": "teste1agorafoi@gmail.com",
+    "senha": "teste123"
+}
+//{
+//  "empresa": {
+//    "id": 2,
+//    "nome": "teste Sistemas",
+//    "email": "testeempresa@gmail.com",
+//    "created_at": "2024-06-18T08:13:26.000000Z",
+//    "updated_at": "2024-06-18T08:13:26.000000Z"
+//  },
+//  "token": "6|DEuwVCC6ABFs5XCNZIwCsS2B0MrI9M1FlpqaYF2dcb995224"
+//}
+
+
+//atualizarempresa
+PUT http://localhost:8000/api/empresas/2
+Content-Type: application/json
+Authorization: Bearer 6|DEuwVCC6ABFs5XCNZIwCsS2B0MrI9M1FlpqaYF2dcb995224
+
+{
+    "nome":"empresa atualizada",
+    "email": "testeempresa2@gmail.com",
+    "senha": "mudasenha"
+}
+//{
+//  "id": 2,
+//  "nome": "empresa atualizada",
+//  "email": "testeempresa2@gmail.com",
+//  "created_at": "2024-06-18T08:13:26.000000Z",
+//  "updated_at": "2024-06-18T08:17:45.000000Z"
+//}
+
+//excluir empresa ok
+DELETE http://localhost:8000/api/empresas/2
+Content-Type: application/json
+Authorization: Bearer 6|DEuwVCC6ABFs5XCNZIwCsS2B0MrI9M1FlpqaYF2dcb995224
+// resposta 204 ok
+
+
+POST http://localhost:8000/api/empresa/login
+Content-Type: application/json
+
+{
+    "email": "padraosistemas@gmail.com",
+    "senha": "padrao123"
+}
+
+POST http://localhost:8000/api/empresa/logout
+Content-Type: application/json
+Authorization: Bearer 10|4Xxq7PuiSUUrSbhY8m35p7WayBYRsZN4LEKDP5AC74b3b3a0
+
+"token": "8|3ruw4XSpBF7U2TlHhvIzepcQpFqhcZFaIAQB3Hr11868f126"
+
+//buscar todos os usuarios
+GET http://localhost:8000/api/usuarios
+Content-Type: application/json
+Authorization: Bearer 1|GhjkaxFlGBPJSpwNSn2Siz4WNXLiYnRhas5rTTAma650ec6b
+/******
+resposta
+HTTP/1.1 200 OK
+Host: localhost:8000
+Connection: close
+X-Powered-By: PHP/8.2.12
+Cache-Control: no-cache, private
+Date: Tue, 18 Jun 2024 08:42:07 GMT
+Content-Type: application/json
+Access-Control-Allow-Origin: http://localhost:3000
+Access-Control-Allow-Credentials: true
+
+[
+  {
+    "id": 1,
+    "nome": "Bryan A de Freitas",
+    "email": "bryanalex464@gmail.com",
+    "created_at": "2024-06-18T07:22:55.000000Z",
+    "updated_at": "2024-06-18T07:38:49.000000Z"
+  },
+  {
+    "id": 3,
+    "nome": "Usuario teste 2",
+    "email": "teste@gmail.com",
+    "created_at": "2024-06-18T08:40:35.000000Z",
+    "updated_at": "2024-06-18T08:40:35.000000Z"
+  },
+  {
+    "id": 4,
+    "nome": "teste 4",
+    "email": "erreioultimo@gmail.com",
+    "created_at": "2024-06-18T08:41:14.000000Z",
+    "updated_at": "2024-06-18T08:41:14.000000Z"
+  },
+  {
+    "id": 5,
+    "nome": "teste 5",
+    "email": "erreioultimo5@gmail.com",
+    "created_at": "2024-06-18T08:41:37.000000Z",
+    "updated_at": "2024-06-18T08:41:37.000000Z"
+  }
+]
+*****/
+
+"token": "8|3ruw4XSpBF7U2TlHhvIzepcQpFqhcZFaIAQB3Hr11868f126"
+
+//buscar usuario x
+GET http://localhost:8000/api/usuarios/1
+Content-Type: application/json
+Authorization: Bearer 8|3ruw4XSpBF7U2TlHhvIzepcQpFqhcZFaIAQB3Hr11868f126
+/**********
+resposta
+HTTP/1.1 200 OK
+Host: localhost:8000
+Connection: close
+X-Powered-By: PHP/8.2.12
+Cache-Control: no-cache, private
+Date: Tue, 18 Jun 2024 08:44:19 GMT
+Content-Type: application/json
+Access-Control-Allow-Origin: http://localhost:3000
+Access-Control-Allow-Credentials: true
+
+{
+  "id": 1,
+  "nome": "Bryan A de Freitas",
+  "email": "bryanalex464@gmail.com",
+  "created_at": "2024-06-18T07:22:55.000000Z",
+  "updated_at": "2024-06-18T07:38:49.000000Z"
+}
+***********/
+
+//buscar todos as empresas
+GET http://localhost:8000/api/empresas
+Content-Type: application/json
+Authorization: Bearer 8|3ruw4XSpBF7U2TlHhvIzepcQpFqhcZFaIAQB3Hr11868f126
+/******
+respostaHTTP/1.1 200 OK
+Host: localhost:8000
+Connection: close
+X-Powered-By: PHP/8.2.12
+Cache-Control: no-cache, private
+Date: Tue, 18 Jun 2024 08:49:21 GMT
+Content-Type: application/json
+Access-Control-Allow-Origin: http://localhost:3000
+Access-Control-Allow-Credentials: true
+
+[
+  {
+    "id": 1,
+    "nome": "Padr\u00e3o Sistemas",
+    "email": "padraosistemas@gmail.com",
+    "created_at": "2024-06-18T07:32:51.000000Z",
+    "updated_at": "2024-06-18T07:32:51.000000Z"
+  },
+  {
+    "id": 3,
+    "nome": "teste Sistemas",
+    "email": "teste2@gmail.com",
+    "created_at": "2024-06-18T08:48:22.000000Z",
+    "updated_at": "2024-06-18T08:48:22.000000Z"
+  },
+  {
+    "id": 4,
+    "nome": "teste 4",
+    "email": "4testeagorafoi@gmail.com",
+    "created_at": "2024-06-18T08:48:53.000000Z",
+    "updated_at": "2024-06-18T08:48:53.000000Z"
+  }
+]
+*****/
+
+//buscar empresa x
+GET http://localhost:8000/api/empresas/1
+Content-Type: application/json
+Authorization: Bearer 8|3ruw4XSpBF7U2TlHhvIzepcQpFqhcZFaIAQB3Hr11868f126
+/**********
+resposta
+HTTP/1.1 200 OK
+Host: localhost:8000
+Connection: close
+X-Powered-By: PHP/8.2.12
+Cache-Control: no-cache, private
+Date: Tue, 18 Jun 2024 08:50:06 GMT
+Content-Type: application/json
+Access-Control-Allow-Origin: http://localhost:3000
+Access-Control-Allow-Credentials: true
+
+{
+  "id": 1,
+  "nome": "Padr\u00e3o Sistemas",
+  "email": "padraosistemas@gmail.com",
+  "created_at": "2024-06-18T07:32:51.000000Z",
+  "updated_at": "2024-06-18T07:32:51.000000Z"
+}
+***********/
+
+
+//-------------------TESTES DE VAGAS  -------------------------------
+
+//buscar vagas
+GET http://localhost:8000/api/vagas
+Content-Type: application/json
+Authorization: Bearer 2|zkicKwt1OmAOW20ZriyhI1VrkTFKCY2Y6QshfvrHd52706e3
+
+/*****
+respostas
+HTTP/1.1 200 OK
+Host: localhost:8000
+Connection: close
+X-Powered-By: PHP/8.2.12
+Cache-Control: no-cache, private
+Date: Tue, 18 Jun 2024 09:19:23 GMT
+Content-Type: application/json
+Access-Control-Allow-Origin: http://localhost:3000
+Access-Control-Allow-Credentials: true
+
+{
+  "mensagem": "Nao ha vagas disponiveis"
+}
+
+------------------------
+HTTP/1.1 200 OK
+Host: localhost:8000
+Connection: close
+X-Powered-By: PHP/8.2.12
+Cache-Control: no-cache, private
+Date: Tue, 18 Jun 2024 10:15:43 GMT
+Content-Type: application/json
+Access-Control-Allow-Origin: http://localhost:3000
+Access-Control-Allow-Credentials: true
+
+[
+  {
+    "id": 1,
+    "empresa_id": 1,
+    "titulo": "Tecnico Instalador",
+    "descricao": "instalador e prestador de manutencao em sistema de seguran\u00e7a eletronico",
+    "status": "aberta",
+    "created_at": "2024-06-18T10:13:21.000000Z",
+    "updated_at": "2024-06-18T10:13:21.000000Z"
+  },
+  {
+    "id": 2,
+    "empresa_id": 1,
+    "titulo": "Tecnico Instalador aux",
+    "descricao": "instalador e prestador de manutencao em sistema de seguran\u00e7a eletronico em aprendizado",
+    "status": "aberta",
+    "created_at": "2024-06-18T10:14:07.000000Z",
+    "updated_at": "2024-06-18T10:14:07.000000Z"
+  }
+]
+
+****/
+
+//buscar vaga x ok
+GET http://localhost:8000/api/vagas/2
+Content-Type: application/json
+Authorization: Bearer 2|zkicKwt1OmAOW20ZriyhI1VrkTFKCY2Y6QshfvrHd52706e3
+
+
+//cadastrar vaga
+POST http://localhost:8000/api/vagas
+Content-Type: application/json
+Authorization: Bearer 2|zkicKwt1OmAOW20ZriyhI1VrkTFKCY2Y6QshfvrHd52706e3
+
+{
+    "titulo":"Instalador",
+    "descricao": "instalador em sistema de segurança eletronico em aprendizado",
+    "empresa_id": "2"
+}
+// respostas
+/********
+HTTP/1.1 201 Created
+Host: localhost:8000
+Connection: close
+X-Powered-By: PHP/8.2.12
+Cache-Control: no-cache, private
+Date: Tue, 18 Jun 2024 10:14:07 GMT
+Content-Type: application/json
+Access-Control-Allow-Origin: http://localhost:3000
+Access-Control-Allow-Credentials: true
+
+{
+  "titulo": "Tecnico Instalador aux",
+  "descricao": "instalador e prestador de manutencao em sistema de seguran\u00e7a eletronico em aprendizado",
+  "empresa_id": "1",
+  "updated_at": "2024-06-18T10:14:07.000000Z",
+  "created_at": "2024-06-18T10:14:07.000000Z",
+  "id": 2
+}
+*******/
+
+
+//atualização usuavagasrio ok
+PUT http://localhost:8000/api/vagas/1
+Content-Type: application/json
+Authorization: Bearer 2|j32N3zYcbLvUJS9HkHhLKVRSOLq4zatHB2u2qO1Q976bb1ec
+
+
+{
+    "titulo":"vaga atualizada F",
+    "descricao": "qulaqidhashascjascasbjkvsa",
+    "empresa_id": "1"
+}
+/***********
+resposta
+HTTP/1.1 200 OK
+Host: localhost:8000
+Connection: close
+X-Powered-By: PHP/8.2.12
+Cache-Control: no-cache, private
+Date: Tue, 18 Jun 2024 10:19:15 GMT
+Content-Type: application/json
+Access-Control-Allow-Origin: http://localhost:3000
+Access-Control-Allow-Credentials: true
+
+{
+  "id": 1,
+  "empresa_id": "1",
+  "titulo": "vaga atualizada F",
+  "descricao": "qulaqidhashascjascasbjkvsa",
+  "status": "aberta",
+  "created_at": "2024-06-18T10:13:21.000000Z",
+  "updated_at": "2024-06-18T10:19:15.000000Z"
+}
+***********/
+
+//excluir vagas ok
+DELETE http://localhost:8000/api/vagas/1
+Content-Type: application/json
+Authorization: Bearer 4|uX8I4zSBQmjz0eZgWIvSSYkXzIhMHCFkLkNT8McF1520075a
+// resposta 204 ok
+
+
+//cadastrar candidatura
+POST http://localhost:8000/api/candidaturas
+Content-Type: application/json
+Authorization: Bearer 2|zkicKwt1OmAOW20ZriyhI1VrkTFKCY2Y6QshfvrHd52706e3
+
+{
+    "usuario_id":"2",
+    "vaga_id": "2",
+    "mensagem": "quero me candidatar"
+}
+/*********
+resposta
+HTTP/1.1 201 Created
+Host: localhost:8000
+Connection: close
+X-Powered-By: PHP/8.2.12
+Cache-Control: no-cache, private
+Date: Tue, 18 Jun 2024 10:48:52 GMT
+Content-Type: application/json
+Access-Control-Allow-Origin: http://localhost:3000
+Access-Control-Allow-Credentials: true
+
+{
+  "data": {
+    "usuario_id": "1",
+    "vaga_id": "3",
+    "mensagem": "quero me candidatar",
+    "updated_at": "2024-06-18T10:48:52.000000Z",
+    "created_at": "2024-06-18T10:48:52.000000Z",
+    "id": 3
+  }
+}
+
+
+
+GET http://localhost:8000/api/candidaturas
+Content-Type: application/json
+Authorization: Bearer 2|zkicKwt1OmAOW20ZriyhI1VrkTFKCY2Y6QshfvrHd52706e3
+
+/*********
+resposta
+HTTP/1.1 200 OK
+Host: localhost:8000
+Connection: close
+X-Powered-By: PHP/8.2.12
+Cache-Control: no-cache, private
+Date: Tue, 18 Jun 2024 22:34:31 GMT
+Content-Type: application/json
+Access-Control-Allow-Origin: http://localhost:3000
+Access-Control-Allow-Credentials: true
+
+{
+  "data": [
+    {
+      "id": 3,
+      "vaga_id": 1,
+      "usuario_id": 2,
+      "mensagem": "quero me candidatar",
+      "status": "enviada",
+      "created_at": "2024-06-18T22:31:33.000000Z",
+      "updated_at": "2024-06-18T22:31:33.000000Z"
+    },
+    {
+      "id": 4,
+      "vaga_id": 1,
+      "usuario_id": 1,
+      "mensagem": "quero me candidatar",
+      "status": "enviada",
+      "created_at": "2024-06-18T22:31:42.000000Z",
+      "updated_at": "2024-06-18T22:31:42.000000Z"
+    },
+    {
+      "id": 5,
+      "vaga_id": 2,
+      "usuario_id": 2,
+      "mensagem": "quero me candidatar",
+      "status": "enviada",
+      "created_at": "2024-06-18T22:31:54.000000Z",
+      "updated_at": "2024-06-18T22:31:54.000000Z"
+    }
+  ]
+}
+**********/
+
+*************/
+
+
+//cadastrar mensagens #nao
+POST http://localhost:8000/api/mensagens
+Content-Type: application/json
+Authorization: Bearer 2|zkicKwt1OmAOW20ZriyhI1VrkTFKCY2Y6QshfvrHd52706e3
+
+{
+    "conteudo":"voce foi selecionado para entrevista dia 03, ligr ou confirmar via email emaildaempresa@gmail.com ou 32222222.",
+    "de_id": "1",
+    "para_id": "2"
+}
+
+//buscar mensagens #nao
+GET http://localhost:8000/api/mensagens
+Content-Type: application/json
+Authorization: Bearer 2|zkicKwt1OmAOW20ZriyhI1VrkTFKCY2Y6QshfvrHd52706e3
+
+/*********
+resposta
+
+POST http://localhost:8000/api/empresa/login
+Content-Type: application/json
+
+{
+    "email": "empresaadmin@gmail.com",
+    "senha": "admin123"
+}
